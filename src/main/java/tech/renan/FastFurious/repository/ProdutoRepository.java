@@ -5,5 +5,5 @@ import java.util.List;
 import tech.renan.FastFurious.domain.model.Produto;
 
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
-    List<Produto> findByCategoria(String categoria);
+    List<Produto> findByCategoriaIgnoreCase(String categoria);
 }
