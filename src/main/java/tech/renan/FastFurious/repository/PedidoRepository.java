@@ -8,15 +8,10 @@ import tech.renan.FastFurious.domain.model.StatusPedido;
 
 /**
  *
- * @author Aluno
+ * @author Renan
  */
 
 @Repository
 public interface PedidoRepository extends JpaRepository<Pedido, Long> {
-   /**
-    * Responsável por buscar os pedidos com um Status em específico.
-    * @param status Status dos pedidos
-    * @return 
-    */
     Optional<Pedido> findByStatus (StatusPedido status);
 }
