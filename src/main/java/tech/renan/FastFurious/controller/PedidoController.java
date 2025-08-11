@@ -33,9 +33,7 @@ public class PedidoController {
     @Autowired
     private PedidoRepository pedidoRepository;
 
-   //=============================POST=======================================//
    @PostMapping
-   // O '?' indica que pode ser qualquer campo no 'ResponseEntity'
     public ResponseEntity<?> criar(@RequestBody Pedido itemPedido) {
         try {
             Pedido pedidoSalvo = pedidoService.criar(itemPedido);
@@ -45,9 +43,6 @@ public class PedidoController {
         }
     }
     
-    //==============================GET=======================================//
-    
-    //=======ID=========//
     @GetMapping("/{id}")
     public ResponseEntity<Pedido> buscar (@PathVariable Long id) {
         Optional<Pedido> pedido = pedidoRepository.findById(id);
@@ -60,7 +55,6 @@ public class PedidoController {
     
     }
     
-    //====STATUS====//
     @GetMapping("/status/{status}")
     public ResponseEntity<Pedido> buscar (@PathVariable StatusPedido status) {
         Optional<Pedido> pedido = pedidoRepository.findByStatus(status);
@@ -72,11 +66,9 @@ public class PedidoController {
         }
     }
     
-    //===========================DELETE=======================================//
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluir (@PathVariable Long id){
         
-        // Verifica se existe ou não o código e exclui caso positivo.
         if(!pedidoRepository.existsById(id)){
             return ResponseEntity.notFound().build();
         } else {
@@ -84,10 +76,6 @@ public class PedidoController {
             return ResponseEntity.noContent().build();
         }
     }
-    
-    //==============================PUT=======================================//
-    
-    //=======ID=======//
     
     @PutMapping("/{id}")
     public ResponseEntity<Pedido> atualizarId (@PathVariable Long id,
@@ -103,7 +91,7 @@ public class PedidoController {
         
         }
     }
-    //=====STATUS=====//
+
     @PutMapping(value = "/status/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Pedido> atualizar (@PathVariable Long id,
                                              @RequestBody Pedido pedido) {
@@ -116,24 +104,14 @@ public class PedidoController {
            if (pedido.getStatus() == null || !statusValido(pedido.getStatus())) {
                 throw new IllegalArgumentException("Status inválido");
             }
-           
-           
+                    
            pedido = pedidoService.salvar(pedido);
            return ResponseEntity.ok(pedido);
         }
     }
     
-    /**
-     * Aqui foi criado essa classe para a verificação se existe ou não o Status 
-     * informado pelo usuário
-     * @param status Remete ao Status do pedido
-     * @return Retorna uma lista de todos os Status
-     */
     private boolean statusValido(StatusPedido status) {
         return Arrays.asList(StatusPedido.values()).contains(status);
     }
-    
-    
-
-    
+       
 }
