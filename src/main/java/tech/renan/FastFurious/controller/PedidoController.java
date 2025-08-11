@@ -2,10 +2,10 @@ package tech.renan.FastFurious.controller;
 
 import java.util.Arrays;
 import java.util.Optional;
-import local.enrico.Fast_and_Furious_Food.domain.model.Pedido;
-import local.enrico.Fast_and_Furious_Food.domain.model.StatusPedido;
-import local.enrico.Fast_and_Furious_Food.domain.repository.PedidoRepository;
-import local.enrico.Fast_and_Furious_Food.domain.service.PedidoService;
+import tech.renan.Fast_and_Furious_Food.domain.model.Pedido;
+import tech.renan.Fast_and_Furious_Food.domain.model.StatusPedido;
+import tech.renan.Fast_and_Furious_Food.domain.repository.PedidoRepository;
+import tech.renan.Fast_and_Furious_Food.domain.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
